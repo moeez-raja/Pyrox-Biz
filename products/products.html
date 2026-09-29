@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Products · MoeezFlow</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  >
+
+  <link rel="stylesheet" href="products.css">
+  <link rel="stylesheet" href="../css/shared-sidebar.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+  <!-- =====================================================
+       SIDEBAR
+  ====================================================== -->
+
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-head">
+
+      <button
+        type="button"
+        class="sidebar-close"
+        id="sidebarClose"
+        aria-label="Close menu"
+      >
+        <i class="fas fa-xmark"></i>
+      </button>
+
+    </div>
+
+
+    <nav class="sidebar-nav" aria-label="Primary">
+
+      <span class="nav-label">Workspace</span>
+
+      <ul>
+
+        <li>
+          <a href="../dashboard/dashboard.html" class="nav-link">
+            <i class="fas fa-grid-2 nav-icon"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="../products/products.html"
+            class="nav-link active"
+            aria-current="page"
+          >
+            <i class="fas fa-cube nav-icon"></i>
+            <span>Products</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="../sales/sales.html" class="nav-link">
+            <i class="fas fa-bag-shopping nav-icon"></i>
+            <span>Sales</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="../purchases/purchases.html" class="nav-link">
+            <i class="fas fa-dolly nav-icon"></i>
+            <span>Purchases</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="../customers/customers.html" class="nav-link">
+            <i class="fas fa-user-group nav-icon"></i>
+            <span>Customers</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="../suppliers/suppliers.html" class="nav-link">
+            <i class="fas fa-handshake nav-icon"></i>
+            <span>Suppliers</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="../invoices/invoices.html" class="nav-link">
+            <i class="fas fa-file-invoice-dollar nav-icon"></i>
+            <span>Invoices</span>
+          </a>
+        </li>
+
+
+        <li>
+          <a href="../expenses/expenses.html" class="nav-link">
+            <i class="fas fa-wallet nav-icon"></i>
+            <span>Expenses</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="../reports/reports.html" class="nav-link">
+            <i class="fas fa-chart-pie nav-icon"></i>
+            <span>Reports</span>
+          </a>
+        </li>
+
+      </ul>
+
+    </nav>
+
+
+    <div class="sidebar-foot">
+
+      <ul>
+
+        <li>
+          <a href="../settings/settings.html" class="nav-link">
+            <i class="fas fa-sliders nav-icon"></i>
+            <span>Settings</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="../help/help.html" class="nav-link">
+            <i class="fas fa-circle-question nav-icon"></i>
+            <span>Help</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#" class="nav-link nav-link-danger" id="logoutBtn">
+            <i class="fas fa-arrow-right-from-bracket nav-icon"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </aside>
+
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+
+  <!-- =====================================================
+       MAIN
+  ====================================================== -->
+
+  <div class="main">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+      <div class="topbar-left">
+
+        <button
+          type="button"
+          class="icon-btn menu-toggle"
+          id="menuToggle"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <h1 class="page-title">Products</h1>
+
+      </div>
+
+
+      <div class="topbar-right">
+
+        <button
+          type="button"
+          class="btn btn-solid"
+          id="openAddProductBtn"
+        >
+          <i class="fas fa-plus"></i>
+          Add Product
+        </button>
+
+      </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+
+    <main class="content">
+
+      <!-- STATISTICS -->
+
+      <section
+        class="metrics-grid"
+        id="statsGrid"
+        aria-label="Product statistics"
+      ></section>
+
+
+      <!-- TOOLBAR -->
+
+      <section class="panel toolbar-panel">
+
+        <div class="toolbar">
+
+          <div class="toolbar-search">
+
+            <i class="fas fa-magnifying-glass search-icon"></i>
+
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search by name, SKU, barcode, brand, category, supplier..."
+              aria-label="Search products"
+            >
+
+          </div>
+
+
+          <div class="toolbar-controls">
+
+            <div class="select-wrap">
+              <select id="filterCategory">
+                <option value="">All Categories</option>
+              </select>
+            </div>
+
+            <div class="select-wrap">
+              <select id="filterBrand">
+                <option value="">All Brands</option>
+              </select>
+            </div>
+
+            <div class="select-wrap">
+              <select id="filterSupplier">
+                <option value="">All Suppliers</option>
+              </select>
+            </div>
+
+            <div class="select-wrap">
+              <select id="filterStatus">
+                <option value="">All Statuses</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+                <option value="Discontinued">Discontinued</option>
+              </select>
+            </div>
+
+            <div class="select-wrap">
+              <select id="filterStockStatus">
+                <option value="">All Stock Levels</option>
+                <option value="In Stock">In Stock</option>
+                <option value="Low Stock">Low Stock</option>
+                <option value="Out of Stock">Out of Stock</option>
+              </select>
+            </div>
+
+            <div class="select-wrap">
+              <select id="filterLocation">
+                <option value="">All Locations</option>
+              </select>
+            </div>
+
+            <button
+              type="button"
+              class="btn btn-ghost"
+              id="clearFiltersBtn"
+            >
+              <i class="fas fa-filter-circle-xmark"></i>
+              Clear
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="toolbar-bottom">
+
+          <div class="sort-group">
+
+            <label for="sortField">Sort by</label>
+
+            <select id="sortField">
+
+              <option value="name">Product Name</option>
+              <option value="costPrice">Cost Price</option>
+              <option value="sellingPrice">Selling Price</option>
+              <option value="stock">Stock</option>
+              <option value="createdAt">Created Date</option>
+              <option value="updatedAt">Updated Date</option>
+
+            </select>
+
+            <button
+              type="button"
+              class="icon-btn"
+              id="sortDirBtn"
+              data-dir="asc"
+              aria-label="Toggle sort direction"
+            >
+              <i class="fas fa-arrow-down-short-wide"></i>
+            </button>
+
+          </div>
+
+
+          <div
+            class="bulk-bar"
+            id="bulkBar"
+            hidden
+          >
+
+            <span id="selectedCount">
+              0 selected
+            </span>
+
+            <button
+              type="button"
+              class="btn btn-outline btn-sm"
+              id="clearSelectionBtn"
+            >
+              Clear
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-solid btn-sm btn-danger"
+              id="bulkDeleteBtn"
+            >
+              <i class="fas fa-trash"></i>
+              Delete Selected
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- TABLE -->
+
+      <section class="panel table-panel">
+
+        <div class="table-scroll">
+
+          <table
+            class="data-table"
+            id="productsTable"
+          >
+
+            <thead>
+
+              <tr>
+
+                <th class="col-check">
+                  <input
+                    type="checkbox"
+                    id="selectAllCheckbox"
+                    aria-label="Select all products"
+                  >
+                </th>
+
+                <th>Product</th>
+                <th>Category</th>
+                <th>Selling Price</th>
+                <th>Stock</th>
+                <th>Stock Status</th>
+                <th>Status</th>
+                <th>Last Updated</th>
+                <th class="col-actions">Actions</th>
+
+              </tr>
+
+            </thead>
+
+
+            <tbody id="productsTableBody"></tbody>
+
+          </table>
+
+        </div>
+
+
+        <!-- EMPTY STATE -->
+
+        <div
+          class="empty-state"
+          id="emptyState"
+          hidden
+        >
+
+          <i class="fas fa-box-open"></i>
+
+          <h3 id="emptyStateTitle">
+            No products yet
+          </h3>
+
+          <p id="emptyStateText">
+            Add your first product to start managing your inventory and sales.
+          </p>
+
+          <button
+            type="button"
+            class="btn btn-solid"
+            id="emptyStateAddBtn"
+          >
+            <i class="fas fa-plus"></i>
+            Add Product
+          </button>
+
+        </div>
+
+
+        <!-- PAGINATION -->
+
+        <div
+          class="pagination"
+          id="pagination"
+          hidden
+        ></div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     TOAST
+====================================================== -->
+
+<div
+  class="toast"
+  id="toast"
+  role="status"
+  aria-live="polite"
+></div>
+
+
+<!-- =====================================================
+     PRODUCT MODAL
+====================================================== -->
+
+<div
+  class="modal modal-lg"
+  id="productModal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="productModalTitle"
+  hidden
+>
+
+  <div class="modal-head">
+
+    <h3 id="productModalTitle">
+      <i class="fas fa-box-open"></i>
+      Add Product
+    </h3>
+
+    <button
+      type="button"
+      class="modal-close"
+      id="closeProductModal"
+      aria-label="Close"
+    >
+      &times;
+    </button>
+
+  </div>
+
+
+  <form
+    class="modal-body"
+    id="productForm"
+  >
+
+    <input
+      type="hidden"
+      id="id"
+      name="id"
+    >
+
+
+    <!-- BASIC INFORMATION -->
+
+    <div class="form-section">
+
+      <h4 class="form-section-title">
+        Basic Information
+      </h4>
+
+
+      <div class="form-grid-2">
+
+        <div class="form-row">
+
+          <label for="name">
+            Product Name
+            <span class="req">*</span>
+          </label>
+
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="e.g. Panadol 500mg"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label for="sku">
+            SKU
+          </label>
+
+          <input
+            type="text"
+            id="sku"
+            name="sku"
+            placeholder="e.g. PDL-500"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="form-grid-2">
+
+        <div class="form-row">
+
+          <label for="barcode">
+            Barcode
+          </label>
+
+          <input
+            type="text"
+            id="barcode"
+            name="barcode"
+            placeholder="Optional"
+          >
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label for="status">
+            Product Status
+          </label>
+
+          <select
+            id="status"
+            name="status"
+          >
+
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+            <option value="Discontinued">Discontinued</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-grid-2">
+
+        <div class="form-row">
+
+          <label for="category">
+            Category
+          </label>
+
+          <input
+            type="text"
+            id="category"
+            name="category"
+            list="categoryOptions"
+            placeholder="e.g. Analgesic"
+          >
+
+          <datalist id="categoryOptions"></datalist>
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label for="brand">
+            Brand
+          </label>
+
+          <input
+            type="text"
+            id="brand"
+            name="brand"
+            list="brandOptions"
+            placeholder="Optional"
+          >
+
+          <datalist id="brandOptions"></datalist>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-row">
+
+        <label for="description">
+          Description
+        </label>
+
+        <textarea
+          id="description"
+          name="description"
+          rows="3"
+          placeholder="Optional product description"
+        ></textarea>
+
+      </div>
+
+    </div>
+
+
+    <!-- PRICING -->
+
+    <div class="form-section">
+
+      <h4 class="form-section-title">
+        Pricing
+      </h4>
+
+
+      <div class="form-grid-3">
+
+        <div class="form-row">
+
+          <label for="costPrice">
+            Cost Price
+            <span class="req">*</span>
+          </label>
+
+          <input
+            type="number"
+            id="costPrice"
+            name="costPrice"
+            min="0"
+            step="0.01"
+            placeholder="0.00"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label for="sellingPrice">
+            Selling Price
+            <span class="req">*</span>
+          </label>
+
+          <input
+            type="number"
+            id="sellingPrice"
+            name="sellingPrice"
+            min="0"
+            step="0.01"
+            placeholder="0.00"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label for="wholesalePrice">
+            Wholesale Price
+          </label>
+
+          <input
+            type="number"
+            id="wholesalePrice"
+            name="wholesalePrice"
+            min="0"
+            step="0.01"
+            placeholder="0.00"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="form-grid-3">
+
+        <div class="form-row">
+
+          <label for="taxRate">
+            Tax Rate (%)
+          </label>
+
+          <input
+            type="number"
+            id="taxRate"
+            name="taxRate"
+            min="0"
+            step="0.01"
+            placeholder="0"
+          >
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label for="discount">
+            Discount (%)
+          </label>
+
+          <input
+            type="number"
+            id="discount"
+            name="discount"
+            min="0"
+            step="0.01"
+            placeholder="0"
+          >
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label for="currency">
+            Currency
+          </label>
+
+          <select
+            id="currency"
+            name="currency"
+          >
+
+            <option value="PKR">PKR</option>
+            <option value="USD">USD</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="AED">AED</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- INVENTORY -->
+
+    <div class="form-section">
+
+      <h4 class="form-section-title">
+        Inventory
+      </h4>
+
+
+      <div class="form-row">
+        <p class="field-hint">
+          <i class="fas fa-circle-info"></i>
+          Product stock is automatically calculated from batch quantities.
+          Add or edit batches using the
+          <strong>Batches</strong> button on the product row.
+        </p>
+      </div>
+
+
+      <div class="form-grid-3">
+
+        <div class="form-row">
+
+          <label for="stock">
+            Current Stock
+          </label>
+
+          <input
+            type="number"
+            id="stock"
+            name="stock"
+            min="0"
+            step="1"
+            placeholder="0"
+            readonly
+            class="input-readonly"
+          >
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label for="minimumStock">
+            Minimum Stock
+          </label>
+
+          <input
+            type="number"
+            id="minimumStock"
+            name="minimumStock"
+            min="0"
+            step="1"
+            placeholder="0"
+          >
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label for="maximumStock">
+            Maximum Stock
+          </label>
+
+          <input
+            type="number"
+            id="maximumStock"
+            name="maximumStock"
+            min="0"
+            step="1"
+            placeholder="0"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="form-grid-3">
+
+        <div class="form-row">
+
+          <label for="reorderLevel">
+            Reorder Level
+          </label>
+
+          <input
+            type="number"
+            id="reorderLevel"
+            name="reorderLevel"
+            min="0"
+            step="1"
+            placeholder="0"
+          >
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label for="unit">
+            Unit
+          </label>
+
+          <input
+            type="text"
+            id="unit"
+            name="unit"
+            list="unitOptions"
+            placeholder="e.g. pcs, box"
+          >
+
+          <datalist id="unitOptions">
+            <option value="pcs"></option>
+            <option value="tablet"></option>
+            <option value="capsule"></option>
+            <option value="bottle"></option>
+            <option value="box"></option>
+            <option value="strip"></option>
+            <option value="vial"></option>
+            <option value="sachet"></option>
+            <option value="kg"></option>
+            <option value="litre"></option>
+            <option value="meter"></option>
+            <option value="dozen"></option>
+          </datalist>
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label for="location">
+            Warehouse / Location
+          </label>
+
+          <input
+            type="text"
+            id="location"
+            name="location"
+            list="locationOptions"
+            placeholder="Optional"
+          >
+
+          <datalist id="locationOptions"></datalist>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- SUPPLIER -->
+
+    <div class="form-section">
+
+      <h4 class="form-section-title">
+        Supplier
+      </h4>
+
+
+      <div class="form-grid-2">
+
+        <div class="form-row">
+
+          <label for="supplier">
+            Supplier Name
+          </label>
+
+          <input
+            type="text"
+            id="supplier"
+            name="supplier"
+            list="supplierOptions"
+            placeholder="Optional"
+          >
+
+          <datalist id="supplierOptions"></datalist>
+
+        </div>
+
+
+        <div class="form-row">
+
+          <label for="supplierSku">
+            Supplier SKU
+          </label>
+
+          <input
+            type="text"
+            id="supplierSku"
+            name="supplierSku"
+            placeholder="Optional"
+          >
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- PHARMACEUTICAL / MEDICAL DETAILS -->
+
+    <div class="form-section">
+
+      <h4 class="form-section-title">
+        Pharmaceutical / Medical Details
+      </h4>
+
+      <div class="form-grid-2">
+
+        <div class="form-row">
+          <label for="genericName">
+            Generic Name
+          </label>
+          <input
+            type="text"
+            id="genericName"
+            name="genericName"
+            placeholder="e.g. Paracetamol"
+          >
+        </div>
+
+        <div class="form-row">
+          <label for="strength">
+            Strength / Dosage
+          </label>
+          <input
+            type="text"
+            id="strength"
+            name="strength"
+            placeholder="e.g. 500mg"
+          >
+        </div>
+
+      </div>
+
+      <div class="form-grid-2">
+
+        <div class="form-row">
+          <label for="packSize">
+            Pack Size
+          </label>
+          <input
+            type="text"
+            id="packSize"
+            name="packSize"
+            placeholder="e.g. 30 tablets"
+          >
+        </div>
+
+        <div class="form-row">
+          <label for="manufacturer">
+            Manufacturer
+          </label>
+          <input
+            type="text"
+            id="manufacturer"
+            name="manufacturer"
+            placeholder="Optional"
+          >
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ADDITIONAL INFORMATION -->
+
+    <div class="form-section">
+
+      <h4 class="form-section-title">
+        Additional Information
+      </h4>
+
+
+      <div class="form-row">
+
+        <label for="productImageInput">
+          Product Image
+        </label>
+
+
+        <div class="image-upload">
+
+          <img
+            id="productImagePreview"
+            class="image-preview"
+            src=""
+            alt="Product preview"
+            hidden
+          >
+
+
+          <div class="image-upload-actions">
+
+            <label
+              class="btn btn-outline btn-sm"
+              for="productImageInput"
+            >
+              <i class="fas fa-upload"></i>
+              Choose Image
+            </label>
+
+
+            <input
+              type="file"
+              id="productImageInput"
+              accept="image/*"
+              hidden
+            >
+
+          </div>
+
+        </div>
+
+
+        <input
+          type="hidden"
+          id="image"
+          name="image"
+        >
+
+      </div>
+
+
+      <div class="form-row">
+
+        <label for="notes">
+          Notes
+        </label>
+
+        <textarea
+          id="notes"
+          name="notes"
+          rows="3"
+          placeholder="Optional internal notes"
+        ></textarea>
+
+      </div>
+
+    </div>
+
+
+    <!-- FORM ACTIONS -->
+
+    <div class="modal-actions">
+
+      <button
+        type="button"
+        class="btn btn-ghost"
+        id="cancelProductBtn"
+      >
+        Cancel
+      </button>
+
+
+      <button
+        type="submit"
+        class="btn btn-solid"
+        id="productFormSubmitBtn"
+      >
+        Add Product
+      </button>
+
+    </div>
+
+  </form>
+
+</div>
+
+
+<!-- =====================================================
+     DELETE MODAL
+====================================================== -->
+
+<div
+  class="modal modal-sm"
+  id="deleteModal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="deleteModalTitle"
+  hidden
+>
+
+  <div class="modal-head">
+
+    <h3 id="deleteModalTitle">
+      <i class="fas fa-trash"></i>
+      Delete Product?
+    </h3>
+
+    <button
+      type="button"
+      class="modal-close"
+      id="closeDeleteModal"
+      aria-label="Close"
+    >
+      &times;
+    </button>
+
+  </div>
+
+
+  <div class="modal-body confirm-body">
+
+    <div class="confirm-icon">
+      <i class="fas fa-trash"></i>
+    </div>
+
+
+    <p>
+      Deleting this product will remove it from your current
+      product list. This cannot be undone.
+    </p>
+
+
+    <div class="modal-actions modal-actions-center">
+
+      <button
+        type="button"
+        class="btn btn-outline"
+        id="cancelDeleteBtn"
+      >
+        Cancel
+      </button>
+
+
+      <button
+        type="button"
+        class="btn btn-solid btn-danger"
+        id="confirmDeleteBtn"
+      >
+        Delete
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     CONFIRM MODAL
+====================================================== -->
+
+<div
+  class="modal modal-sm"
+  id="confirmModal"
+  role="dialog"
+  aria-modal="true"
+  hidden
+>
+  <div class="modal-head">
+    <h3 id="confirmModalTitle">
+      <i class="fas fa-circle-question"></i>
+      Confirm action
+    </h3>
+    <button
+      type="button"
+      class="modal-close"
+      id="closeConfirmModal"
+      aria-label="Close"
+    >
+      &times;
+    </button>
+  </div>
+
+  <div class="modal-body confirm-body">
+    <div class="confirm-icon confirm-icon-info" id="confirmModalIcon">
+      <i class="fas fa-circle-question"></i>
+    </div>
+    <h4 id="confirmModalHeading" style="font-size:14px;font-weight:700;color:#0B1C3A;">
+      Confirm action
+    </h4>
+    <p id="confirmModalText">This action cannot be undone.</p>
+
+    <div class="modal-actions modal-actions-center">
+      <button type="button" class="btn btn-outline" id="cancelConfirmBtn">
+        Cancel
+      </button>
+      <button type="button" class="btn btn-solid" id="confirmActionBtn">
+        Confirm
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- =====================================================
+     BATCH MANAGER MODAL
+====================================================== -->
+
+<div
+  class="modal modal-xl"
+  id="batchModal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="batchModalTitle"
+  hidden
+>
+
+  <div class="modal-head">
+    <h3 id="batchModalTitle">
+      <i class="fas fa-layer-group"></i>
+      Batches
+    </h3>
+    <button
+      type="button"
+      class="modal-close"
+      id="closeBatchModal"
+      aria-label="Close"
+    >&times;</button>
+  </div>
+
+  <div class="modal-body batch-modal-body">
+
+    <div class="batch-summary" id="batchSummary"></div>
+
+    <div class="form-section">
+      <h4 class="form-section-title" id="batchFormTitle">Add Batch</h4>
+
+      <form id="batchForm" class="batch-form">
+
+        <div class="form-grid-3">
+          <div class="form-row">
+            <label for="batchNumberInput">Batch / Lot Number <span class="req">*</span></label>
+            <input type="text" id="batchNumberInput" required placeholder="e.g. BATCH-A1">
+          </div>
+
+          <div class="form-row">
+            <label for="batchQuantityInput">Quantity <span class="req">*</span></label>
+            <input type="number" id="batchQuantityInput" min="0" step="1" required placeholder="0">
+          </div>
+
+          <div class="form-row">
+            <label for="batchExpiryInput">Expiry Date <span class="req">*</span></label>
+            <input type="date" id="batchExpiryInput" required>
+          </div>
+        </div>
+
+        <div class="form-grid-3">
+          <div class="form-row">
+            <label for="batchManufacturingInput">Manufacturing Date</label>
+            <input type="date" id="batchManufacturingInput">
+          </div>
+
+          <div class="form-row">
+            <label for="batchCostPriceInput">Batch Cost Price</label>
+            <input type="number" id="batchCostPriceInput" min="0" step="0.01" placeholder="Optional">
+          </div>
+
+          <div class="form-row">
+            <label for="batchSellingPriceInput">Batch Selling Price</label>
+            <input type="number" id="batchSellingPriceInput" min="0" step="0.01" placeholder="Optional">
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-row">
+            <label for="batchSupplierInput">Supplier</label>
+            <input type="text" id="batchSupplierInput" placeholder="Optional">
+          </div>
+
+          <div class="form-row">
+            <label for="batchPurchaseRefInput">Purchase Reference</label>
+            <input type="text" id="batchPurchaseRefInput" placeholder="Optional invoice/bill #">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="batchNotesInput">Notes</label>
+          <textarea id="batchNotesInput" rows="2" placeholder="Optional"></textarea>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="cancelBatchFormBtn">Reset</button>
+          <button type="submit" class="btn btn-solid" id="batchFormSubmitBtn">Add Batch</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="form-section">
+      <h4 class="form-section-title">Existing Batches</h4>
+
+      <div class="table-scroll">
+        <table class="data-table" id="batchTable">
+          <thead>
+            <tr>
+              <th>Batch #</th>
+              <th>Mfg Date</th>
+              <th>Expiry</th>
+              <th>Status</th>
+              <th>Qty</th>
+              <th>Supplier</th>
+              <th class="col-actions">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="batchTableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="empty-state" id="batchEmptyState" hidden>
+        <i class="fas fa-layer-group"></i>
+        <h3>No batches yet</h3>
+        <p>Add the first batch above. Product stock will update automatically.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- =====================================================
+     BATCH DELETE MODAL
+====================================================== -->
+
+<div
+  class="modal modal-sm"
+  id="batchDeleteModal"
+  role="dialog"
+  aria-modal="true"
+  hidden
+>
+  <div class="modal-head">
+    <h3><i class="fas fa-trash"></i> Delete Batch?</h3>
+    <button type="button" class="modal-close" id="cancelBatchDeleteX" aria-label="Close">&times;</button>
+  </div>
+
+  <div class="modal-body confirm-body">
+    <div class="confirm-icon confirm-icon-danger">
+      <i class="fas fa-trash"></i>
+    </div>
+    <p id="batchDeleteText">Delete this batch?</p>
+
+    <div class="modal-actions modal-actions-center">
+      <button type="button" class="btn btn-outline" id="cancelBatchDeleteBtn">Cancel</button>
+      <button type="button" class="btn btn-danger" id="confirmBatchDeleteBtn">Delete</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script type="module" src="products.js"></script>
+
+</body>
+</html>

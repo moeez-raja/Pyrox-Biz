@@ -1,0 +1,244 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Top-level collections following the ownerId security model
+    match /products/{productId} {
+      allow create: if request.auth != null
+        && request.resource.data.ownerId == request.auth.uid;
+
+      allow read: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+
+      allow update: if request.auth != null
+        && resource.data.ownerId == request.auth.uid
+        && (!('ownerId' in request.resource.data) || request.resource.data.ownerId == request.auth.uid);
+
+      allow delete: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+    }
+
+    match /customers/{customerId} {
+      allow create: if request.auth != null
+        && request.resource.data.ownerId == request.auth.uid;
+
+      allow read: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+
+      allow update: if request.auth != null
+        && resource.data.ownerId == request.auth.uid
+        && (!('ownerId' in request.resource.data) || request.resource.data.ownerId == request.auth.uid);
+
+      allow delete: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+    }
+
+    match /sales/{saleId} {
+      allow create: if request.auth != null
+        && request.resource.data.ownerId == request.auth.uid;
+
+      allow read: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+
+      allow update: if request.auth != null
+        && resource.data.ownerId == request.auth.uid
+        && (!('ownerId' in request.resource.data) || request.resource.data.ownerId == request.auth.uid);
+
+      allow delete: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+    }
+
+    match /purchases/{purchaseId} {
+      allow create: if request.auth != null
+        && request.resource.data.ownerId == request.auth.uid;
+
+      allow read: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+
+      allow update: if request.auth != null
+        && resource.data.ownerId == request.auth.uid
+        && (!('ownerId' in request.resource.data) || request.resource.data.ownerId == request.auth.uid);
+
+      allow delete: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+    }
+
+    match /batches/{batchId} {
+      allow create: if request.auth != null
+        && request.resource.data.ownerId == request.auth.uid;
+
+      allow read: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+
+      allow update: if request.auth != null
+        && resource.data.ownerId == request.auth.uid
+        && (!('ownerId' in request.resource.data) || request.resource.data.ownerId == request.auth.uid);
+
+      allow delete: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+    }
+
+    match /suppliers/{supplierId} {
+      allow create: if request.auth != null
+        && request.resource.data.ownerId == request.auth.uid;
+
+      allow read: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+
+      allow update: if request.auth != null
+        && resource.data.ownerId == request.auth.uid
+        && (!('ownerId' in request.resource.data) || request.resource.data.ownerId == request.auth.uid);
+
+      allow delete: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+    }
+
+    match /invoices/{invoiceId} {
+      allow create: if request.auth != null
+        && request.resource.data.ownerId == request.auth.uid;
+
+      allow read: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+
+      allow update: if request.auth != null
+        && resource.data.ownerId == request.auth.uid
+        && (!('ownerId' in request.resource.data) || request.resource.data.ownerId == request.auth.uid);
+
+      allow delete: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+    }
+
+    match /counters/{counterId} {
+      allow create: if request.auth != null
+        && request.resource.data.ownerId == request.auth.uid;
+
+      allow read: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+
+      allow update: if request.auth != null
+        && resource.data.ownerId == request.auth.uid
+        && (!('ownerId' in request.resource.data) || request.resource.data.ownerId == request.auth.uid);
+
+      allow delete: if request.auth != null
+        && resource.data.ownerId == request.auth.uid;
+    }
+
+    // ------------------------------------------------------------------
+    // Business-scoped paths
+    // ------------------------------------------------------------------
+
+    match /businesses/{uid}/invoices/{invoiceId} {
+      allow create: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.data.ownerId == request.auth.uid;
+
+      allow read: if request.auth != null
+        && request.auth.uid == uid;
+
+      allow update: if request.auth != null
+        && request.auth.uid == uid
+        && resource.data.ownerId == request.auth.uid
+        && (!('ownerId' in request.resource.data) || request.resource.data.ownerId == request.auth.uid);
+
+      allow delete: if request.auth != null
+        && request.auth.uid == uid
+        && resource.data.ownerId == request.auth.uid;
+    }
+
+    match /businesses/{uid}/counters/{counterId} {
+      allow create: if request.auth != null
+        && request.auth.uid == uid;
+
+      allow read: if request.auth != null
+        && request.auth.uid == uid;
+
+      allow update: if request.auth != null
+        && request.auth.uid == uid;
+
+      allow delete: if request.auth != null
+        && request.auth.uid == uid;
+    }
+
+    match /businesses/{uid}/sales/{saleId} {
+      allow create: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.data.ownerId == request.auth.uid;
+
+      allow read: if request.auth != null
+        && request.auth.uid == uid
+        && resource.data.ownerId == request.auth.uid;
+
+      allow update: if request.auth != null
+        && request.auth.uid == uid
+        && resource.data.ownerId == request.auth.uid
+        && (!('ownerId' in request.resource.data) || request.resource.data.ownerId == request.auth.uid);
+
+      allow delete: if request.auth != null
+        && request.auth.uid == uid
+        && resource.data.ownerId == request.auth.uid;
+    }
+
+    // ------------------------------------------------------------------
+    // EXPENSES
+    // Minimal fix: allow authenticated owner to query the expenses
+    // collection under their own business UID.
+    // ------------------------------------------------------------------
+
+    match /businesses/{uid}/expenses/{expenseId} {
+      allow create: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.data.ownerId == request.auth.uid;
+
+      allow read: if request.auth != null
+        && request.auth.uid == uid;
+
+      allow update: if request.auth != null
+        && request.auth.uid == uid
+        && resource.data.ownerId == request.auth.uid
+        && (!('ownerId' in request.resource.data) || request.resource.data.ownerId == request.auth.uid);
+
+      allow delete: if request.auth != null
+        && request.auth.uid == uid
+        && resource.data.ownerId == request.auth.uid;
+    }
+
+    // ------------------------------------------------------------------
+    // SETTINGS
+    // Business profile and account settings for the authenticated owner.
+    // ------------------------------------------------------------------
+
+    match /businesses/{uid}/settings/{settingId} {
+      allow create: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.data.ownerId == request.auth.uid;
+
+      allow read: if request.auth != null
+        && request.auth.uid == uid;
+
+      allow update: if request.auth != null
+        && request.auth.uid == uid
+        && resource.data.ownerId == request.auth.uid
+        && (!('ownerId' in request.resource.data) || request.resource.data.ownerId == request.auth.uid);
+
+      allow delete: if request.auth != null
+        && request.auth.uid == uid
+        && resource.data.ownerId == request.auth.uid;
+    }
+  }
+}
+match /payments/{paymentId} {
+  allow create: if request.auth != null
+    && request.resource.data.ownerId == request.auth.uid;
+
+  allow read: if request.auth != null
+    && resource.data.ownerId == request.auth.uid;
+
+  allow update: if request.auth != null
+    && resource.data.ownerId == request.auth.uid
+    && (!('ownerId' in request.resource.data)
+        || request.resource.data.ownerId == request.auth.uid);
+
+  allow delete: if request.auth != null
+    && resource.data.ownerId == request.auth.uid;
+}

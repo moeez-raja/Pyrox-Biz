@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help & Support · Pyrox Biz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="help.css">
+<link rel="stylesheet" href="../css/shared-sidebar.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close menu"><i class="fas fa-xmark"></i></button>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Primary">
+      <span class="nav-label">Workspace</span>
+      <ul>
+        <li><a href="../dashboard/dashboard.html" class="nav-link"><i class="fas fa-grid-2 nav-icon"></i><span>Dashboard</span></a></li>
+        <li><a href="../products/products.html" class="nav-link"><i class="fas fa-cube nav-icon"></i><span>Products</span></a></li>
+        <li><a href="../sales/sales.html" class="nav-link"><i class="fas fa-bag-shopping nav-icon"></i><span>Sales</span></a></li>
+        <li><a href="../purchases/purchases.html" class="nav-link"><i class="fas fa-dolly nav-icon"></i><span>Purchases</span></a></li>
+        <li><a href="../customers/customers.html" class="nav-link"><i class="fas fa-user-group nav-icon"></i><span>Customers</span></a></li>
+        <li><a href="../suppliers/suppliers.html" class="nav-link"><i class="fas fa-handshake nav-icon"></i><span>Suppliers</span></a></li>
+        <li><a href="../invoices/invoices.html" class="nav-link"><i class="fas fa-file-invoice-dollar nav-icon"></i><span>Invoices</span></a></li>
+        <li><a href="../expenses/expenses.html" class="nav-link"><i class="fas fa-wallet nav-icon"></i><span>Expenses</span></a></li>
+        <li><a href="../reports/reports.html" class="nav-link"><i class="fas fa-chart-pie nav-icon"></i><span>Reports</span></a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-foot">
+      <ul>
+        <li><a href="../settings/settings.html" class="nav-link"><i class="fas fa-sliders nav-icon"></i><span>Settings</span></a></li>
+        <li><a href="../help/help.html" class="nav-link active" aria-current="page"><i class="fas fa-circle-question nav-icon"></i><span>Help</span></a></li>
+        <li><a href="#" class="nav-link nav-link-danger" id="logoutBtn"><i class="fas fa-arrow-right-from-bracket nav-icon"></i><span>Logout</span></a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+        <h1 class="page-title">Help & Support</h1>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <section class="support-hero reveal">
+        <span class="support-eyebrow"><i class="fas fa-headset"></i> Customer Support</span>
+        <h2 class="support-title">Need a hand? We're right here.</h2>
+        <p class="support-sub">Reach the Pyrox Biz team directly on Instagram or WhatsApp — real replies from a real person, no ticket queues.</p>
+      </section>
+
+      <section class="support-grid">
+
+        <!-- ============ INSTAGRAM CARD ============ -->
+        <div class="support-card reveal" style="--rd:.05s">
+          <div class="support-card-top">
+            <div class="support-card-icon"><i class="fab fa-instagram"></i></div>
+            <span class="support-availability"><span class="availability-dot"></span> Usually replies within a day</span>
+          </div>
+          <h3 class="support-card-title">Instagram</h3>
+          <p class="support-card-desc">Send us a DM for quick questions, feedback, or general support.</p>
+          <div class="support-card-handle"><i class="fab fa-instagram"></i><span>@moeez.dev</span></div>
+          <a href="https://instagram.com/moeez.dev" target="_blank" rel="noopener noreferrer" class="support-btn" id="instagramBtn">
+            <i class="fab fa-instagram"></i><span>Message on Instagram</span><i class="fas fa-arrow-right btn-arrow"></i>
+          </a>
+        </div>
+
+        <!-- ============ WHATSAPP CARD ============ -->
+        <div class="support-card reveal" style="--rd:.12s">
+          <div class="support-card-top">
+            <div class="support-card-icon"><i class="fab fa-whatsapp"></i></div>
+            <span class="support-availability"><span class="availability-dot"></span> Fastest response time</span>
+          </div>
+          <h3 class="support-card-title">WhatsApp</h3>
+          <p class="support-card-desc">Chat with us directly for fast, real-time support and assistance.</p>
+          <div class="support-card-handle"><i class="fab fa-whatsapp"></i><span>@moeezali18</span></div>
+          <!-- IMPORTANT: wa.me links require a real phone number, not a
+               username. Replace 'moeezali18' below with the actual number
+               (country code + digits only, e.g. 923001234567) or this
+               button will fail to open a chat. -->
+          <a href="https://wa.me/moeezali18" target="_blank" rel="noopener noreferrer" class="support-btn" id="whatsappBtn">
+            <i class="fab fa-whatsapp"></i><span>Chat on WhatsApp</span><i class="fas fa-arrow-right btn-arrow"></i>
+          </a>
+        </div>
+
+      </section>
+
+      <p class="support-footnote reveal" style="--rd:.18s">Both channels are monitored directly by the Pyrox Biz team.</p>
+
+    </main>
+  </div>
+</div>
+
+<script src="help.js"></script>
+</body>
+</html>

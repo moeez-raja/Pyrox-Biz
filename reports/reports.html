@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reports · FlowAI · MoeezFlow</title>
+<meta name="theme-color" content="#2563EB">
+<meta name="description" content="FlowAI business reports for MoeezFlow — deterministic answers from your Firestore data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="reports.css">
+<link rel="stylesheet" href="../css/shared-sidebar.css">
+<style>
+  /* Reports uses the same fixed sidebar rhythm as every workspace module. */
+  .sidebar .sidebar-nav ul li {
+    height: 36px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .sidebar .sidebar-nav .nav-link,
+  .sidebar .sidebar-foot .nav-link {
+    height: 36px !important;
+    min-height: 36px !important;
+    margin: 0 !important;
+    padding: 8px 14px !important;
+    line-height: 20px !important;
+    box-sizing: border-box !important;
+  }
+</style>
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close menu"><i class="fas fa-xmark"></i></button>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Primary">
+      <span class="nav-label">Workspace</span>
+      <ul>
+        <li><a href="../dashboard/dashboard.html" class="nav-link"><i class="fas fa-grid-2 nav-icon"></i><span>Dashboard</span></a></li>
+        <li><a href="../products/products.html" class="nav-link"><i class="fas fa-cube nav-icon"></i><span>Products</span></a></li>
+        <li><a href="../sales/sales.html" class="nav-link"><i class="fas fa-bag-shopping nav-icon"></i><span>Sales</span></a></li>
+        <li><a href="../purchases/purchases.html" class="nav-link"><i class="fas fa-dolly nav-icon"></i><span>Purchases</span></a></li>
+        <li><a href="../customers/customers.html" class="nav-link"><i class="fas fa-user-group nav-icon"></i><span>Customers</span></a></li>
+        <li><a href="../suppliers/suppliers.html" class="nav-link"><i class="fas fa-handshake nav-icon"></i><span>Suppliers</span></a></li>
+        <li><a href="../invoices/invoices.html" class="nav-link"><i class="fas fa-file-invoice-dollar nav-icon"></i><span>Invoices</span></a></li>
+        <li><a href="../expenses/expenses.html" class="nav-link"><i class="fas fa-wallet nav-icon"></i><span>Expenses</span></a></li>
+        <li><a href="../reports/reports.html" class="nav-link active" aria-current="page"><i class="fas fa-chart-pie nav-icon"></i><span>Reports</span></a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-foot">
+      <ul>
+        <li><a href="../settings/settings.html" class="nav-link"><i class="fas fa-sliders nav-icon"></i><span>Settings</span></a></li>
+        <li><a href="../help/help.html" class="nav-link"><i class="fas fa-circle-question nav-icon"></i><span>Help</span></a></li>
+        <li><a href="#" class="nav-link nav-link-danger" id="logoutBtn"><i class="fas fa-arrow-right-from-bracket nav-icon"></i><span>Logout</span></a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+        <h1 class="page-title">
+          Reports
+          <span class="title-badge">FlowAI</span>
+        </h1>
+      </div>
+      <div class="topbar-right">
+        <button class="btn btn-outline" id="refreshDataBtn" data-tooltip="Reload Firestore data">
+          <i class="fas fa-rotate"></i> <span>Refresh Data</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="content chat-content">
+
+      <div class="chat-shell">
+
+        <!-- ============ CHAT HEADER (logo removed) ============ -->
+        <div class="chat-header">
+          <div class="chat-header-info">
+            <div class="chat-header-name">
+              FlowAI
+              <i class="fas fa-circle-check verified" aria-hidden="true"></i>
+            </div>
+            <div class="chat-header-status" id="chatStatus">
+              <span class="status-dot"></span> Connecting to your business data...
+            </div>
+          </div>
+          <div class="chat-header-actions">
+            <button class="icon-btn" data-tooltip="Online" aria-label="Status">
+              <i class="fas fa-bolt"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- ============ MESSAGES ============ -->
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-msg chat-msg-ai">
+            <div class="chat-bubble-wrap" style="margin-left: 0;">
+              <div class="chat-bubble">
+                Hi, I'm <strong>FlowAI</strong> — your business assistant for MoeezFlow. Ask me about your sales, purchases, profit, customers, suppliers, inventory, or expenses, and I'll calculate the answer straight from your real Firestore records.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ SUGGESTIONS ============ -->
+        <div class="suggestions" id="suggestions" aria-label="Suggested questions"></div>
+
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ============ LOADER OVERLAY ============ -->
+<div class="loader-overlay" id="loaderOverlay" aria-hidden="true">
+  <div class="loader">
+    <svg width="100" height="100" viewBox="0 0 100 100" aria-hidden="true">
+      <defs>
+        <mask id="clipping">
+          <polygon points="0,0 100,0 100,100 0,100" fill="black"></polygon>
+          <polygon points="25,25 75,25 50,75" fill="white"></polygon>
+          <polygon points="50,25 75,75 25,75" fill="white"></polygon>
+          <polygon points="35,35 65,35 50,65" fill="white"></polygon>
+          <polygon points="35,35 65,35 50,65" fill="white"></polygon>
+          <polygon points="35,35 65,35 50,65" fill="white"></polygon>
+          <polygon points="35,35 65,35 50,65" fill="white"></polygon>
+        </mask>
+      </defs>
+    </svg>
+    <div class="box"></div>
+  </div>
+  <div class="loader-text">FlowAI is thinking...</div>
+</div>
+
+<script type="module" src="reports.js"></script>
+</body>
+</html>

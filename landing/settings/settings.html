@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings · MoeezFlow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="settings.css">
+<link rel="stylesheet" href="../css/shared-sidebar.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close menu"><i class="fas fa-xmark"></i></button>
+    </div>
+
+    <nav class="sidebar-nav" aria-label="Primary">
+      <span class="nav-label">Workspace</span>
+      <ul>
+        <li><a href="../dashboard/dashboard.html" class="nav-link"><i class="fas fa-grid-2 nav-icon"></i><span>Dashboard</span></a></li>
+        <li><a href="../products/products.html" class="nav-link"><i class="fas fa-cube nav-icon"></i><span>Products</span></a></li>
+        <li><a href="../sales/sales.html" class="nav-link"><i class="fas fa-bag-shopping nav-icon"></i><span>Sales</span></a></li>
+        <li><a href="../purchases/purchases.html" class="nav-link"><i class="fas fa-dolly nav-icon"></i><span>Purchases</span></a></li>
+        <li><a href="../customers/customers.html" class="nav-link"><i class="fas fa-user-group nav-icon"></i><span>Customers</span></a></li>
+        <li><a href="../suppliers/suppliers.html" class="nav-link"><i class="fas fa-handshake nav-icon"></i><span>Suppliers</span></a></li>
+        <li><a href="../invoices/invoices.html" class="nav-link"><i class="fas fa-file-invoice-dollar nav-icon"></i><span>Invoices</span></a></li>
+        <li><a href="../expenses/expenses.html" class="nav-link"><i class="fas fa-wallet nav-icon"></i><span>Expenses</span></a></li>
+        <li><a href="../reports/reports.html" class="nav-link"><i class="fas fa-chart-pie nav-icon"></i><span>Reports</span></a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-foot">
+      <ul>
+        <li><a href="../settings/settings.html" class="nav-link active" aria-current="page"><i class="fas fa-sliders nav-icon"></i><span>Settings</span></a></li>
+        <li><a href="../help/help.html" class="nav-link"><i class="fas fa-circle-question nav-icon"></i><span>Help</span></a></li>
+        <li><a href="#" class="nav-link nav-link-danger" id="sidebarLogoutBtn"><i class="fas fa-arrow-right-from-bracket nav-icon"></i><span>Logout</span></a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+        <h1 class="page-title">Settings</h1>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <div class="settings-shell">
+
+        <!-- ============ SETTINGS NAV ============ -->
+        <nav class="settings-nav" aria-label="Settings sections">
+          <button type="button" class="settings-nav-item active" data-section="business"><i class="fas fa-building"></i> Business Profile</button>
+          <button type="button" class="settings-nav-item" data-section="account"><i class="fas fa-user"></i> Account</button>
+          <button type="button" class="settings-nav-item" data-section="invoice"><i class="fas fa-file-invoice"></i> Invoice &amp; Sales</button>
+          <button type="button" class="settings-nav-item" data-section="flowai"><i class="fas fa-sparkles"></i> FlowAI</button>
+          <button type="button" class="settings-nav-item" data-section="security"><i class="fas fa-shield-halved"></i> Security</button>
+          <button type="button" class="settings-nav-item settings-nav-danger" data-section="danger"><i class="fas fa-triangle-exclamation"></i> Danger Zone</button>
+        </nav>
+
+        <!-- ============ SETTINGS PANELS ============ -->
+        <div class="settings-panels">
+
+          <div class="loading-state" id="loadingState"><span class="module-spinner" aria-hidden="true"></span> Loading settings...</div>
+
+          <!-- ===== BUSINESS PROFILE ===== -->
+          <section class="settings-section active" id="section-business">
+            <div class="panel">
+              <div class="panel-head-row">
+                <div>
+                  <h2 class="panel-title">Business Profile</h2>
+                  <p class="panel-sub">This information appears on every new invoice you generate.</p>
+                </div>
+              </div>
+
+              <form id="businessForm" novalidate>
+                <div class="logo-row">
+                  <div class="logo-preview" id="logoPreview"><i class="fas fa-building"></i></div>
+                  <div class="logo-actions">
+                    <label class="btn btn-outline btn-sm" for="logoInput"><i class="fas fa-upload"></i> Upload Logo</label>
+                    <input type="file" id="logoInput" accept="image/*" hidden>
+                    <button type="button" class="btn btn-ghost btn-sm" id="removeLogoBtn" hidden>Remove</button>
+                    <span class="hint-text">PNG or JPG, will be resized automatically.</span>
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-row">
+                    <label for="bizName">Business Name <span class="req">*</span></label>
+                    <div class="input-copy-wrap">
+                      <input type="text" id="bizName" placeholder="e.g. MoeezFlow Traders" required>
+                      <button type="button" class="copy-btn" data-copy-target="bizName" aria-label="Copy business name"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <span class="field-error">Business name is required.</span>
+                  </div>
+                  <div class="form-row">
+                    <label for="bizOwner">Owner Name</label>
+                    <input type="text" id="bizOwner" placeholder="Optional">
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-row">
+                    <label for="bizPhone">Phone</label>
+                    <div class="input-copy-wrap">
+                      <input type="tel" id="bizPhone" placeholder="03xx-xxxxxxx">
+                      <button type="button" class="copy-btn" data-copy-target="bizPhone" aria-label="Copy phone"><i class="fas fa-copy"></i></button>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <label for="bizEmail">Email</label>
+                    <div class="input-copy-wrap">
+                      <input type="email" id="bizEmail" placeholder="business@email.com">
+                      <button type="button" class="copy-btn" data-copy-target="bizEmail" aria-label="Copy email"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <span class="field-error">Enter a valid email address.</span>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <label for="bizAddress">Business Address</label>
+                  <div class="input-copy-wrap">
+                    <textarea id="bizAddress" rows="2" placeholder="Optional"></textarea>
+                    <button type="button" class="copy-btn copy-btn-textarea" data-copy-target="bizAddress" aria-label="Copy address"><i class="fas fa-copy"></i></button>
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-row">
+                    <label for="bizCurrency">Currency</label>
+                    <select id="bizCurrency">
+                      <option value="PKR">PKR — Pakistani Rupee</option>
+                      <option value="USD">USD — US Dollar</option>
+                      <option value="EUR">EUR — Euro</option>
+                      <option value="GBP">GBP — British Pound</option>
+                      <option value="AED">AED — UAE Dirham</option>
+                    </select>
+                  </div>
+                  <div class="form-row">
+                    <label for="bizType">Business Type</label>
+                    <select id="bizType">
+                      <option value="General Retail">General Retail</option>
+                      <option value="Medical / Pharmacy">Medical / Pharmacy</option>
+                      <option value="Electronics / Computers">Electronics / Computers</option>
+                      <option value="Garments / Clothing">Garments / Clothing</option>
+                      <option value="Food / Grocery">Food / Grocery</option>
+                      <option value="Cosmetics">Cosmetics</option>
+                      <option value="Wholesale">Wholesale</option>
+                      <option value="Manufacturing">Manufacturing</option>
+                      <option value="Services">Services</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-solid" id="businessSaveBtn">Save Business Profile</button>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <!-- ===== ACCOUNT ===== -->
+          <section class="settings-section" id="section-account">
+            <div class="panel">
+              <div class="panel-head-row">
+                <div>
+                  <h2 class="panel-title">Account</h2>
+                  <p class="panel-sub">Your personal login and profile details.</p>
+                </div>
+              </div>
+
+              <form id="accountForm" novalidate>
+                <div class="logo-row">
+                  <div class="logo-preview logo-preview-round" id="photoPreview"><i class="fas fa-user"></i></div>
+                  <div class="logo-actions">
+                    <label class="btn btn-outline btn-sm" for="photoInput"><i class="fas fa-upload"></i> Upload Photo</label>
+                    <input type="file" id="photoInput" accept="image/*" hidden>
+                    <button type="button" class="btn btn-ghost btn-sm" id="removePhotoBtn" hidden>Remove</button>
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-row">
+                    <label for="acctName">Name</label>
+                    <input type="text" id="acctName" placeholder="Your name">
+                  </div>
+                  <div class="form-row">
+                    <label>Email</label>
+                    <div class="input-copy-wrap">
+                      <input type="email" id="acctEmail" readonly>
+                      <button type="button" class="copy-btn" data-copy-target="acctEmail" aria-label="Copy email"><i class="fas fa-copy"></i></button>
+                    </div>
+                    <span class="hint-text">Contact support to change your login email.</span>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="button" class="btn btn-outline" id="openChangePasswordBtn"><i class="fas fa-key"></i> Change Password</button>
+                  <button type="submit" class="btn btn-solid" id="accountSaveBtn">Save Account</button>
+                </div>
+              </form>
+
+              <div class="info-strip">
+                <div class="info-strip-item"><span class="info-strip-label">Account Created</span><span class="info-strip-value" id="acctCreated">—</span></div>
+                <div class="info-strip-item"><span class="info-strip-label">Last Sign-In</span><span class="info-strip-value" id="acctLastLogin">—</span></div>
+                <div class="info-strip-item"><span class="info-strip-label">Email Verified</span><span class="info-strip-value" id="acctVerified">—</span></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== INVOICE & SALES ===== -->
+          <section class="settings-section" id="section-invoice">
+            <div class="panel">
+              <div class="panel-head-row">
+                <div>
+                  <h2 class="panel-title">Invoice &amp; Sales</h2>
+                  <p class="panel-sub">Controls how new invoices are numbered and what appears on them.</p>
+                </div>
+              </div>
+
+              <form id="invoiceForm" novalidate>
+                <div class="form-grid-2">
+                  <div class="form-row">
+                    <label for="invPrefix">Invoice Prefix</label>
+                    <input type="text" id="invPrefix" placeholder="e.g. INV-" maxlength="12">
+                    <span class="hint-text">Purchase invoices automatically use "P" + this prefix.</span>
+                  </div>
+                  <div class="form-row">
+                    <label for="invStartNumber">Starting Invoice Number</label>
+                    <input type="number" id="invStartNumber" min="1" step="1" placeholder="e.g. 1001">
+                    <span class="field-error">Enter a valid starting number (1 or higher).</span>
+                    <span class="hint-text">Only affects invoices generated after saving.</span>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <label for="invDefaultPayment">Default Payment Method</label>
+                  <select id="invDefaultPayment">
+                    <option value="Cash">Cash</option>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                    <option value="Card">Card</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div class="form-row">
+                  <label for="invFooterNotes">Invoice Notes / Footer</label>
+                  <textarea id="invFooterNotes" rows="3" placeholder="e.g. Thank you for your business. Goods once sold are not returnable after 7 days."></textarea>
+                </div>
+
+                <div class="toggle-row">
+                  <label class="toggle-switch">
+                    <input type="checkbox" id="invShowBusinessInfo" checked>
+                    <span class="toggle-slider"></span>
+                  </label>
+                  <div>
+                    <div class="toggle-label">Show business information on invoices</div>
+                    <div class="toggle-sub">Displays your logo, address, phone, and email at the top of each invoice.</div>
+                  </div>
+                </div>
+
+                <div class="customization-panel">
+                  <div class="customization-header">
+                    <div>
+                      <h3>Invoice Customization</h3>
+                      <p>Choose which information appears on both sales and purchase invoices. Business data remains controlled by Settings.</p>
+                    </div>
+                  </div>
+
+                  <div class="customization-grid">
+                    <div class="customization-group">
+                      <h4>General invoice details</h4>
+                      <div class="toggle-grid">
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomInvoiceNumber" checked> Invoice number</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomInvoiceDate" checked> Invoice date</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomDueDate"> Due date</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomPurchaseOrder" checked> PO / Reference</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomNotesTerms" checked> Notes / Terms</label>
+                      </div>
+                    </div>
+
+                    <div class="customization-group">
+                      <h4>Party details</h4>
+                      <div class="toggle-grid">
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomCustomerSupplierPhone" checked> Phone</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomCustomerSupplierAddress" checked> Address</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomCustomerSupplierEmail" checked> Email</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomTaxId" checked> Tax / NTN</label>
+                      </div>
+                    </div>
+
+                    <div class="customization-group">
+                      <h4>Item data</h4>
+                      <div class="toggle-grid">
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomGenericName"> Generic Name</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomStrength"> Strength / Dosage</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomPackSize"> Pack Size</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomSku" checked> SKU</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomDescription" checked> Description</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomUnit" checked> Unit</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomQuantity" checked> Quantity</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomUnitPrice" checked> Unit Price</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomDiscount" checked> Discount</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomTax" checked> Tax</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomBatchLot" checked> Batch / Lot</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomExpiryDate"> Expiry Date</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomManufacturer"> Manufacturer</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomSize"> Size</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomColor"> Color</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomBrand"> Brand</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomWarehouse"> Warehouse</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomSerialNumber"> Serial Number</label>
+                      </div>
+                    </div>
+
+                    <div class="customization-group">
+                      <h4>Totals &amp; payment</h4>
+                      <div class="toggle-grid">
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomSubtotal" checked> Subtotal</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomDiscountTotal" checked> Discount</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomTaxTotal" checked> Tax</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomGrandTotal" checked> Grand Total</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomAmountPaid" checked> Amount Paid</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomBalance" checked> Balance</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomPaymentMethod" checked> Payment Method</label>
+                        <label class="checkbox-inline"><input type="checkbox" id="invCustomPaymentStatus" checked> Payment Status</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="customization-group">
+                    <h4>Item columns</h4>
+                    <div class="column-order-list" id="itemColumnOrderList">
+                      <div class="sort-row" data-column-key="item">
+                        <span>Item / Description</span>
+                        <div class="sort-controls">
+                          <button type="button" class="sort-btn" data-direction="up" aria-label="Move item column up"><i class="fas fa-arrow-up"></i></button>
+                          <button type="button" class="sort-btn" data-direction="down" aria-label="Move item column down"><i class="fas fa-arrow-down"></i></button>
+                        </div>
+                      </div>
+                      <div class="sort-row" data-column-key="sku">
+                        <span>SKU</span>
+                        <div class="sort-controls">
+                          <button type="button" class="sort-btn" data-direction="up" aria-label="Move sku column up"><i class="fas fa-arrow-up"></i></button>
+                          <button type="button" class="sort-btn" data-direction="down" aria-label="Move sku column down"><i class="fas fa-arrow-down"></i></button>
+                        </div>
+                      </div>
+                      <div class="sort-row" data-column-key="qty">
+                        <span>Quantity</span>
+                        <div class="sort-controls">
+                          <button type="button" class="sort-btn" data-direction="up" aria-label="Move quantity column up"><i class="fas fa-arrow-up"></i></button>
+                          <button type="button" class="sort-btn" data-direction="down" aria-label="Move quantity column down"><i class="fas fa-arrow-down"></i></button>
+                        </div>
+                      </div>
+                      <div class="sort-row" data-column-key="unit">
+                        <span>Unit</span>
+                        <div class="sort-controls">
+                          <button type="button" class="sort-btn" data-direction="up" aria-label="Move unit column up"><i class="fas fa-arrow-up"></i></button>
+                          <button type="button" class="sort-btn" data-direction="down" aria-label="Move unit column down"><i class="fas fa-arrow-down"></i></button>
+                        </div>
+                      </div>
+                      <div class="sort-row" data-column-key="unitPrice">
+                        <span>Unit Price</span>
+                        <div class="sort-controls">
+                          <button type="button" class="sort-btn" data-direction="up" aria-label="Move unit price column up"><i class="fas fa-arrow-up"></i></button>
+                          <button type="button" class="sort-btn" data-direction="down" aria-label="Move unit price column down"><i class="fas fa-arrow-down"></i></button>
+                        </div>
+                      </div>
+                      <div class="sort-row" data-column-key="discount">
+                        <span>Discount</span>
+                        <div class="sort-controls">
+                          <button type="button" class="sort-btn" data-direction="up" aria-label="Move discount column up"><i class="fas fa-arrow-up"></i></button>
+                          <button type="button" class="sort-btn" data-direction="down" aria-label="Move discount column down"><i class="fas fa-arrow-down"></i></button>
+                        </div>
+                      </div>
+                      <div class="sort-row" data-column-key="tax">
+                        <span>Tax</span>
+                        <div class="sort-controls">
+                          <button type="button" class="sort-btn" data-direction="up" aria-label="Move tax column up"><i class="fas fa-arrow-up"></i></button>
+                          <button type="button" class="sort-btn" data-direction="down" aria-label="Move tax column down"><i class="fas fa-arrow-down"></i></button>
+                        </div>
+                      </div>
+                      <div class="sort-row" data-column-key="lineTotal">
+                        <span>Line Total</span>
+                        <div class="sort-controls">
+                          <button type="button" class="sort-btn" data-direction="up" aria-label="Move line total column up"><i class="fas fa-arrow-up"></i></button>
+                          <button type="button" class="sort-btn" data-direction="down" aria-label="Move line total column down"><i class="fas fa-arrow-down"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-solid" id="invoiceSaveBtn">Save Invoice Settings</button>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <!-- ===== FLOWAI ===== -->
+          <section class="settings-section" id="section-flowai">
+            <div class="panel">
+              <div class="panel-head-row">
+                <div>
+                  <h2 class="panel-title">FlowAI</h2>
+                  <p class="panel-sub">Your AI business assistant in the Reports module.</p>
+                </div>
+              </div>
+
+              <div class="toggle-row">
+                <label class="toggle-switch">
+                  <input type="checkbox" id="flowAIEnabled" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+                <div>
+                  <div class="toggle-label">Enable FlowAI</div>
+                  <div class="toggle-sub">Turns the FlowAI assistant on or off in the Reports section.</div>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-solid" id="flowAISaveBtn">Save FlowAI Setting</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== SECURITY ===== -->
+          <section class="settings-section" id="section-security">
+            <div class="panel">
+              <div class="panel-head-row">
+                <div>
+                  <h2 class="panel-title">Security</h2>
+                  <p class="panel-sub">Manage your login credentials and session.</p>
+                </div>
+              </div>
+
+              <div class="security-actions">
+                <button type="button" class="btn btn-outline" id="securityChangePasswordBtn"><i class="fas fa-key"></i> Change Password</button>
+                <button type="button" class="btn btn-outline" id="securitySignOutBtn"><i class="fas fa-arrow-right-from-bracket"></i> Sign Out</button>
+              </div>
+
+              <div class="info-strip">
+                <div class="info-strip-item"><span class="info-strip-label">Account Created</span><span class="info-strip-value" id="secCreated">—</span></div>
+                <div class="info-strip-item"><span class="info-strip-label">Last Sign-In</span><span class="info-strip-value" id="secLastLogin">—</span></div>
+                <div class="info-strip-item"><span class="info-strip-label">Sign-In Method</span><span class="info-strip-value" id="secProvider">—</span></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===== DANGER ZONE ===== -->
+          <section class="settings-section" id="section-danger">
+            <div class="panel panel-danger">
+              <div class="panel-head-row">
+                <div>
+                  <h2 class="panel-title">Danger Zone</h2>
+                  <p class="panel-sub">These actions are permanent and cannot be undone.</p>
+                </div>
+              </div>
+
+              <div class="danger-item">
+                <div>
+                  <div class="danger-item-title">Delete Business Data</div>
+                  <div class="danger-item-sub">Permanently deletes all products, sales, purchases, invoices, expenses, and settings. Your login stays active.</div>
+                </div>
+                <button type="button" class="btn btn-outline btn-danger-outline" id="deleteBusinessDataBtn">Delete Business Data</button>
+              </div>
+
+              <div class="danger-item">
+                <div>
+                  <div class="danger-item-title">Delete Account</div>
+                  <div class="danger-item-sub">Permanently deletes all business data and your login. This cannot be recovered.</div>
+                </div>
+                <button type="button" class="btn btn-solid btn-danger" id="deleteAccountBtn">Delete Account</button>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ============ MODAL OVERLAY ============ -->
+<div class="modal-overlay" id="modalOverlay"></div>
+
+<!-- ============ CHANGE PASSWORD MODAL ============ -->
+<div class="modal modal-sm" id="changePasswordModal" role="dialog" aria-modal="true" aria-labelledby="changePasswordTitle" hidden>
+  <div class="modal-head">
+    <h3 id="changePasswordTitle"><i class="fas fa-key"></i> Change Password</h3>
+    <button class="modal-close" data-close-modal aria-label="Close">&times;</button>
+  </div>
+  <form class="modal-body" id="changePasswordForm" novalidate>
+    <div class="form-row">
+      <label for="cpCurrent">Current Password <span class="req">*</span></label>
+      <input type="password" id="cpCurrent" required autocomplete="current-password">
+      <span class="field-error">Current password is required.</span>
+    </div>
+    <div class="form-row">
+      <label for="cpNew">New Password <span class="req">*</span></label>
+      <input type="password" id="cpNew" required minlength="6" autocomplete="new-password">
+      <span class="field-error">New password must be at least 6 characters.</span>
+    </div>
+    <div class="form-row">
+      <label for="cpConfirm">Confirm New Password <span class="req">*</span></label>
+      <input type="password" id="cpConfirm" required autocomplete="new-password">
+      <span class="field-error">Passwords do not match.</span>
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-ghost" data-close-modal>Cancel</button>
+      <button type="submit" class="btn btn-solid" id="cpSubmitBtn">Update Password</button>
+    </div>
+  </form>
+</div>
+
+<!-- ============ DELETE BUSINESS DATA CONFIRM MODAL ============ -->
+<div class="modal modal-sm" id="deleteBusinessDataModal" role="dialog" aria-modal="true" aria-labelledby="deleteBusinessDataTitle" hidden>
+  <div class="modal-body confirm-body">
+    <div class="confirm-icon"><i class="fas fa-triangle-exclamation"></i></div>
+    <h3 id="deleteBusinessDataTitle">Delete all business data?</h3>
+    <p>This permanently deletes every product, sale, purchase, invoice, expense, and setting. Your login will remain active. This cannot be undone.</p>
+    <div class="form-row">
+      <label for="deleteBusinessConfirmInput">Type <strong>DELETE</strong> to confirm</label>
+      <input type="text" id="deleteBusinessConfirmInput" autocomplete="off" placeholder="DELETE">
+    </div>
+    <div class="modal-actions modal-actions-center">
+      <button type="button" class="btn btn-outline" data-close-modal>Cancel</button>
+      <button type="button" class="btn btn-solid btn-danger" id="confirmDeleteBusinessDataBtn" disabled>Delete Business Data</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DELETE ACCOUNT CONFIRM MODAL ============ -->
+<div class="modal modal-sm" id="deleteAccountModal" role="dialog" aria-modal="true" aria-labelledby="deleteAccountTitle" hidden>
+  <div class="modal-body confirm-body">
+    <div class="confirm-icon"><i class="fas fa-triangle-exclamation"></i></div>
+    <h3 id="deleteAccountTitle">Delete your account?</h3>
+    <p>This permanently deletes all business data and your login. This cannot be recovered.</p>
+    <div class="form-row">
+      <label for="deleteAccountPassword">Enter your password to confirm <span class="req">*</span></label>
+      <input type="password" id="deleteAccountPassword" autocomplete="current-password">
+      <span class="field-error">Password is required to confirm account deletion.</span>
+    </div>
+    <div class="form-row">
+      <label for="deleteAccountConfirmInput">Type <strong>DELETE</strong> to confirm</label>
+      <input type="text" id="deleteAccountConfirmInput" autocomplete="off" placeholder="DELETE">
+    </div>
+    <div class="modal-actions modal-actions-center">
+      <button type="button" class="btn btn-outline" data-close-modal>Cancel</button>
+      <button type="button" class="btn btn-solid btn-danger" id="confirmDeleteAccountBtn" disabled>Delete Account</button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="settings.js"></script>
+</body>
+</html>

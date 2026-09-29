@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050506">
+    <title>Pyrox Biz — Run Your Entire Business From One Place</title>
+    <meta name="description" content="Pyrox Biz is the all-in-one business OS for sales, purchases, inventory, invoices, expenses and AI-powered reporting. Built for traders, shopkeepers, and growing teams.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<!-- AMBIENT BACKGROUND -->
+<div class="ambient-grid" aria-hidden="true"></div>
+<div class="ambient-orb ambient-orb-1" aria-hidden="true"></div>
+<div class="ambient-orb ambient-orb-2" aria-hidden="true"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+    <div class="container nav-container">
+        <a href="./index.html" class="logo">
+            <span class="logo-mark">P</span>
+            <span class="logo-text">Pyrox<span>Biz</span></span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <a href="./auth/login.html" class="btn-outline">Sign in</a>
+            <a href="./auth/signup.html" class="btn-primary">Get started <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <div class="nav-actions">
+            <a href="./auth/login.html" class="btn-outline">Sign in</a>
+            <a href="./auth/signup.html" class="btn-primary">Get started</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container hero-inner">
+        <div class="hero-content anim-fade-up">
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                <span>Now with FlowAI reports</span>
+                <i class="fas fa-arrow-right"></i>
+            </div>
+
+            <h1>
+                Run your entire business
+                <span class="hero-rotator" id="rotatingText">from one place.</span>
+            </h1>
+
+            <p>
+                Sales, purchases, inventory, invoices, expenses, customer ledgers and
+                AI-powered reports — all in one blazing-fast dashboard built for
+                traders, shopkeepers, and growing teams.
+            </p>
+
+            <div class="hero-actions">
+                <a href="./auth/signup.html" class="btn-primary btn-large">
+                    Start free — no card
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#demo" class="btn-outline btn-large">
+                    <i class="fas fa-play"></i>
+                    Watch 2-min demo
+                </a>
+            </div>
+
+            <div class="trust-badges">
+                <span><i class="fas fa-check-circle"></i> 14-day free trial</span>
+                <span><i class="fas fa-check-circle"></i> No credit card</span>
+                <span><i class="fas fa-check-circle"></i> Cancel anytime</span>
+            </div>
+        </div>
+
+        <div class="hero-preview anim-slide-right" data-delay="1">
+            <div class="preview-header">
+                <div class="preview-dots">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="preview-title">
+                    <i class="fas fa-chart-line"></i>
+                    Overview · Today
+                </div>
+                <div class="preview-live">
+                    <span class="pulse-dot"></span>
+                    Live
+                </div>
+            </div>
+
+            <div class="preview-stats">
+                <div class="preview-stat">
+                    <div class="preview-stat-label">Sales today</div>
+                    <div class="preview-stat-value">₨ 148,250</div>
+                    <div class="preview-stat-delta up"><i class="fas fa-arrow-up"></i> 12.4%</div>
+                </div>
+                <div class="preview-stat">
+                    <div class="preview-stat-label">Purchases</div>
+                    <div class="preview-stat-value">₨ 62,100</div>
+                    <div class="preview-stat-delta down"><i class="fas fa-arrow-down"></i> 3.1%</div>
+                </div>
+                <div class="preview-stat">
+                    <div class="preview-stat-label">Net profit</div>
+                    <div class="preview-stat-value accent">₨ 86,150</div>
+                    <div class="preview-stat-delta up"><i class="fas fa-arrow-up"></i> 18.9%</div>
+                </div>
+            </div>
+
+            <div class="preview-chart">
+                <svg viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="heroChartGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#29B6F6" stop-opacity="0.35"/>
+                            <stop offset="100%" stop-color="#29B6F6" stop-opacity="0"/>
+                        </linearGradient>
+                    </defs>
+                    <path class="preview-chart-area"
+                          d="M0,90 L40,80 L80,85 L120,60 L160,70 L200,45 L240,55 L280,30 L320,40 L360,20 L400,25 L400,120 L0,120 Z"
+                          fill="url(#heroChartGrad)"/>
+                    <path class="preview-chart-line"
+                          d="M0,90 L40,80 L80,85 L120,60 L160,70 L200,45 L240,55 L280,30 L320,40 L360,20 L400,25"
+                          fill="none" stroke="#29B6F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+
+            <div class="preview-list">
+                <div class="preview-list-row">
+                    <span class="preview-list-icon up"><i class="fas fa-arrow-down"></i></span>
+                    <span class="preview-list-text">Sale · INV-2451</span>
+                    <span class="preview-list-amount up">+ ₨ 12,400</span>
+                </div>
+                <div class="preview-list-row">
+                    <span class="preview-list-icon down"><i class="fas fa-arrow-up"></i></span>
+                    <span class="preview-list-text">Purchase · PO-0182</span>
+                    <span class="preview-list-amount down">− ₨ 4,850</span>
+                </div>
+                <div class="preview-list-row">
+                    <span class="preview-list-icon up"><i class="fas fa-arrow-down"></i></span>
+                    <span class="preview-list-text">Sale · INV-2450</span>
+                    <span class="preview-list-amount up">+ ₨ 8,200</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TRUSTED BY STRIP -->
+<section class="logo-strip">
+    <div class="container">
+        <div class="logo-strip-label">Trusted by growing businesses across Pakistan</div>
+        <div class="logo-strip-grid">
+            <div class="company-logo"><i class="fas fa-store"></i> Kazmi Traders</div>
+            <div class="company-logo"><i class="fas fa-boxes-stacked"></i> Al-Hamd Mart</div>
+            <div class="company-logo"><i class="fas fa-industry"></i> Nexus Textiles</div>
+            <div class="company-logo"><i class="fas fa-cube"></i> Bright Electronics</div>
+            <div class="company-logo"><i class="fas fa-leaf"></i> GreenGrocer</div>
+        </div>
+    </div>
+</section>
+
+<!-- PROBLEMS → SOLUTION -->
+<section class="challenges-section">
+    <div class="container">
+        <div class="section-head anim-fade-up">
+            <div class="section-label">The problem</div>
+            <h2 class="section-title">
+                Your business is scattered across <span class="highlight">10 different tools</span>
+            </h2>
+            <p class="section-sub">
+                Notebooks, WhatsApp, Excel sheets, sticky notes, tax calculators — every
+                system you use costs you time and hides the real numbers.
+            </p>
+        </div>
+
+        <div class="problem-grid">
+            <ul class="problem-list anim-slide-left">
+                <li><i class="fas fa-xmark"></i> Ledgers in a notebook you can't search</li>
+                <li><i class="fas fa-xmark"></i> Stock levels you have to count manually</li>
+                <li><i class="fas fa-xmark"></i> Customer balances you guess at month-end</li>
+                <li><i class="fas fa-xmark"></i> Invoices you type one by one in Word</li>
+                <li><i class="fas fa-xmark"></i> Expense receipts lost in your camera roll</li>
+                <li><i class="fas fa-xmark"></i> Reports that take 3 days to build</li>
+            </ul>
+
+            <div class="solution-box anim-slide-right">
+                <div class="section-label"><i class="fas fa-bolt"></i> The Pyrox way</div>
+                <h3>One dashboard. Every answer in seconds.</h3>
+                <p>
+                    Every sale, purchase, and payment flows into a single ledger
+                    automatically. Stock updates itself. Customer balances are always
+                    live. Reports build themselves.
+                </p>
+                <div class="solution-tags">
+                    <span><i class="fas fa-check"></i> Real-time stock</span>
+                    <span><i class="fas fa-check"></i> Auto-ledger</span>
+                    <span><i class="fas fa-check"></i> One-click invoices</span>
+                    <span><i class="fas fa-check"></i> Instant reports</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+    <div class="container">
+        <div class="section-head anim-fade-up">
+            <div class="section-label">Everything included</div>
+            <h2 class="section-title">
+                Every module your business needs, <span class="highlight">built in</span>
+            </h2>
+            <p class="section-sub">
+                No plugins. No add-ons. Every feature is native, fast, and connected to every other part of the platform.
+            </p>
+        </div>
+
+        <div class="features-grid grid-3col">
+            <article class="feature-card anim-fade-up" data-delay="0">
+                <div class="feature-icon"><i class="fas fa-cart-shopping"></i></div>
+                <h4>Sales & POS</h4>
+                <p>Ring up sales in seconds. Auto-apply discounts, taxes, and print or email invoices instantly.</p>
+                <span class="feature-tag">Core</span>
+            </article>
+
+            <article class="feature-card anim-fade-up" data-delay="1">
+                <div class="feature-icon"><i class="fas fa-truck-fast"></i></div>
+                <h4>Purchases</h4>
+                <p>Track supplier orders, partial deliveries, and payables with automatic ledger updates.</p>
+                <span class="feature-tag">Core</span>
+            </article>
+
+            <article class="feature-card anim-fade-up" data-delay="2">
+                <div class="feature-icon"><i class="fas fa-warehouse"></i></div>
+                <h4>Inventory</h4>
+                <p>Live stock across warehouses. Low-stock alerts, reorder points, and stock movements log.</p>
+                <span class="feature-tag">Core</span>
+            </article>
+
+            <article class="feature-card anim-fade-up" data-delay="3">
+                <div class="feature-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <h4>Invoices</h4>
+                <p>Professional branded invoices with tax, delivery, and payment terms — sent in one click.</p>
+                <span class="feature-tag">Core</span>
+            </article>
+
+            <article class="feature-card anim-fade-up" data-delay="4">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <h4>Customers & Suppliers</h4>
+                <p>Complete ledgers with opening balances, payments, and outstanding amounts per party.</p>
+                <span class="feature-tag">Core</span>
+            </article>
+
+            <article class="feature-card anim-fade-up" data-delay="5">
+                <div class="feature-icon"><i class="fas fa-wallet"></i></div>
+                <h4>Expenses</h4>
+                <p>Log rent, salaries, utilities with categories. Reconcile against your cash drawer.</p>
+                <span class="feature-tag">Core</span>
+            </article>
+
+            <article class="feature-card anim-fade-up featured-feature" data-delay="6">
+                <div class="feature-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+                <h4>FlowAI Reports</h4>
+                <p>Ask in plain English: "Show me top customers last month" — get the answer instantly.</p>
+                <span class="feature-tag ai">New · AI</span>
+            </article>
+
+            <article class="feature-card anim-fade-up" data-delay="7">
+                <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
+                <h4>Roles & Permissions</h4>
+                <p>Give each team member exactly the access they need. Full audit log of every action.</p>
+                <span class="feature-tag">Advanced</span>
+            </article>
+
+            <article class="feature-card anim-fade-up" data-delay="8">
+                <div class="feature-icon"><i class="fas fa-cloud-arrow-up"></i></div>
+                <h4>Cloud Backup</h4>
+                <p>Automatic encrypted backups. Restore any point in time in under 30 seconds.</p>
+                <span class="feature-tag">Advanced</span>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="process-section" id="how-it-works">
+    <div class="container">
+        <div class="section-head anim-fade-up">
+            <div class="section-label">Get started</div>
+            <h2 class="section-title">
+                Live in <span class="highlight">under 10 minutes</span>
+            </h2>
+            <p class="section-sub">
+                No setup calls. No data migration headaches. Just sign up and go.
+            </p>
+        </div>
+
+        <div class="steps-grid grid-3col">
+            <div class="step anim-fade-up" data-delay="0">
+                <div class="step-number">01</div>
+                <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+                <h4>Create your account</h4>
+                <p>Enter your business name and phone number. Verify and you're in.</p>
+            </div>
+
+            <div class="step anim-fade-up" data-delay="1">
+                <div class="step-number">02</div>
+                <div class="step-icon"><i class="fas fa-boxes-packing"></i></div>
+                <h4>Import your products</h4>
+                <p>Paste a spreadsheet or add items manually. Stock and prices set in seconds.</p>
+            </div>
+
+            <div class="step anim-fade-up" data-delay="2">
+                <div class="step-number">03</div>
+                <div class="step-icon"><i class="fas fa-rocket"></i></div>
+                <h4>Start selling</h4>
+                <p>Ring up your first sale. Watch the dashboards update live.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DASHBOARD SHOWCASE -->
+<section class="preview-section" id="demo">
+    <div class="container">
+        <div class="section-head anim-fade-up">
+            <div class="section-label">Product preview</div>
+            <h2 class="section-title">
+                A dashboard traders <span class="highlight">actually use</span>
+            </h2>
+            <p class="section-sub">
+                Built for people who count every rupee. Every number is one tap away from its source.
+            </p>
+        </div>
+
+        <div class="preview-dash anim-scale-in">
+            <div class="dash-topbar">
+                <div class="dash-topbar-title">
+                    <i class="fas fa-chart-pie"></i>
+                    Business overview
+                </div>
+                <div class="dash-topbar-range">
+                    <button class="active">Today</button>
+                    <button>7D</button>
+                    <button>30D</button>
+                    <button>1Y</button>
+                </div>
+            </div>
+
+            <div class="dash-kpis">
+                <div class="dash-kpi">
+                    <div class="dash-kpi-label">Revenue</div>
+                    <div class="dash-kpi-value">₨ 148,250</div>
+                    <div class="dash-kpi-delta up"><i class="fas fa-arrow-up"></i> 12.4%</div>
+                </div>
+                <div class="dash-kpi">
+                    <div class="dash-kpi-label">Profit</div>
+                    <div class="dash-kpi-value accent">₨ 86,150</div>
+                    <div class="dash-kpi-delta up"><i class="fas fa-arrow-up"></i> 18.9%</div>
+                </div>
+                <div class="dash-kpi">
+                    <div class="dash-kpi-label">Receivable</div>
+                    <div class="dash-kpi-value">₨ 42,300</div>
+                    <div class="dash-kpi-delta down"><i class="fas fa-arrow-down"></i> 5.2%</div>
+                </div>
+                <div class="dash-kpi">
+                    <div class="dash-kpi-label">Payable</div>
+                    <div class="dash-kpi-value">₨ 28,900</div>
+                    <div class="dash-kpi-delta neutral">Stable</div>
+                </div>
+            </div>
+
+            <div class="dash-grid">
+                <div class="dash-card">
+                    <div class="dash-header">
+                        <strong><i class="fas fa-chart-line"></i> Sales trend</strong>
+                        <span class="dash-badge positive">+12.4%</span>
+                    </div>
+                    <svg class="dash-chart" viewBox="0 0 600 160" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="dashGrad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#29B6F6" stop-opacity="0.35"/>
+                                <stop offset="100%" stop-color="#29B6F6" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M0,120 L60,110 L120,115 L180,80 L240,95 L300,60 L360,72 L420,40 L480,55 L540,30 L600,35 L600,160 L0,160 Z"
+                              fill="url(#dashGrad)"/>
+                        <path d="M0,120 L60,110 L120,115 L180,80 L240,95 L300,60 L360,72 L420,40 L480,55 L540,30 L600,35"
+                              fill="none" stroke="#29B6F6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+
+                <div class="dash-card">
+                    <div class="dash-header">
+                        <strong><i class="fas fa-trophy"></i> Top products</strong>
+                        <span class="dash-badge positive">+8.2%</span>
+                    </div>
+                    <div class="dash-list">
+                        <div class="dash-row"><span>Cotton fabric (roll)</span><span>₨ 42,300</span></div>
+                        <div class="dash-row"><span>Premium dye</span><span>₨ 28,150</span></div>
+                        <div class="dash-row"><span>Thread spool</span><span>₨ 14,600</span></div>
+                        <div class="dash-row"><span>Buttons pack</span><span>₨ 6,200</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WHY / BENEFITS -->
+<section class="why-section">
+    <div class="container">
+        <div class="grid-2col">
+            <div class="anim-slide-left">
+                <div class="section-label">Why Pyrox Biz</div>
+                <h2 class="section-title">
+                    Built by traders, <span class="highlight">for traders</span>
+                </h2>
+                <p class="section-sub">
+                    We ship updates every two weeks based on feedback from thousands of
+                    business owners. Not a generic ERP — a purpose-built system for the way you actually work.
+                </p>
+                <ul class="benefit-list">
+                    <li><i class="fas fa-bolt"></i> Blazing-fast, no learning curve</li>
+                    <li><i class="fas fa-mobile-screen"></i> Works on mobile, tablet, desktop</li>
+                    <li><i class="fas fa-language"></i> English & Urdu interface</li>
+                    <li><i class="fas fa-cloud"></i> Auto cloud backup every hour</li>
+                    <li><i class="fas fa-lock"></i> Bank-grade encryption</li>
+                    <li><i class="fas fa-headset"></i> WhatsApp support 7 days a week</li>
+                </ul>
+            </div>
+
+            <div class="why-visual anim-slide-right">
+                <div class="why-card">
+                    <div class="why-card-icon"><i class="fas fa-users-gear"></i></div>
+                    <div class="why-card-body">
+                        <strong>Trusted by 4,200+ businesses</strong>
+                        <span>Across retail, wholesale, and manufacturing</span>
+                    </div>
+                </div>
+                <div class="why-card">
+                    <div class="why-card-icon"><i class="fas fa-star"></i></div>
+                    <div class="why-card-body">
+                        <strong>4.9 / 5 average rating</strong>
+                        <span>Based on 1,100+ verified reviews</span>
+                    </div>
+                </div>
+                <div class="why-card">
+                    <div class="why-card-icon"><i class="fas fa-clock-rotate-left"></i></div>
+                    <div class="why-card-body">
+                        <strong>99.99% uptime</strong>
+                        <span>Backed by a 12-month SLA</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+    <div class="container">
+        <div class="section-head anim-fade-up">
+            <div class="section-label">Pricing</div>
+            <h2 class="section-title">
+                Simple plans. <span class="highlight">No hidden fees.</span>
+            </h2>
+            <p class="section-sub">
+                Start free. Upgrade when you grow. Cancel anytime.
+            </p>
+
+            <div class="pricing-toggle">
+                <span class="toggle-label">Monthly</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="pricingToggle">
+                    <span class="slider"></span>
+                </label>
+                <span class="toggle-label">Yearly <span class="save-badge">Save 20%</span></span>
+            </div>
+        </div>
+
+        <div class="pricing-grid grid-3col">
+            <div class="pricing-card anim-fade-up" data-delay="0">
+                <h4>Starter</h4>
+                <div class="price" data-monthly="₨ 2,999" data-yearly="₨ 28,800">₨ 2,999</div>
+                <p>per month · billed monthly</p>
+                <p class="pricing-desc">Perfect for a single shop or trader getting started.</p>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> 1 user</li>
+                    <li><i class="fas fa-check"></i> 500 invoices / month</li>
+                    <li><i class="fas fa-check"></i> Up to 1,000 products</li>
+                    <li><i class="fas fa-check"></i> Sales, purchases & inventory</li>
+                    <li><i class="fas fa-check"></i> Basic reports</li>
+                </ul>
+                <a href="./auth/signup.html" class="btn-outline">Start free trial</a>
+            </div>
+
+            <div class="pricing-card featured anim-fade-up" data-delay="1">
+                <div class="pricing-badge">Most popular</div>
+                <h4>Business</h4>
+                <div class="price" data-monthly="₨ 6,999" data-yearly="₨ 67,200">₨ 6,999</div>
+                <p>per month · billed monthly</p>
+                <p class="pricing-savings">Save ₨ 16,800 / year</p>
+                <p class="pricing-desc">For growing businesses that need team access and advanced reporting.</p>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Up to 5 users</li>
+                    <li><i class="fas fa-check"></i> Unlimited invoices</li>
+                    <li><i class="fas fa-check"></i> Unlimited products</li>
+                    <li><i class="fas fa-check"></i> FlowAI reports</li>
+                    <li><i class="fas fa-check"></i> Multi-warehouse stock</li>
+                    <li><i class="fas fa-check"></i> Priority WhatsApp support</li>
+                </ul>
+                <a href="./auth/signup.html" class="btn-primary">Start free trial <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="pricing-card anim-fade-up" data-delay="2">
+                <h4>Enterprise</h4>
+                <div class="price">Custom</div>
+                <p>Let's talk</p>
+                <p class="pricing-desc">For large teams with multiple branches and custom requirements.</p>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Unlimited users</li>
+                    <li><i class="fas fa-check"></i> Multi-branch support</li>
+                    <li><i class="fas fa-check"></i> Custom roles & audit logs</li>
+                    <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                    <li><i class="fas fa-check"></i> 12-month SLA</li>
+                    <li><i class="fas fa-check"></i> On-premise option</li>
+                </ul>
+                <a href="#" class="btn-outline">Contact sales</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+    <div class="container">
+        <div class="section-head anim-fade-up">
+            <div class="section-label">FAQ</div>
+            <h2 class="section-title">
+                Questions, <span class="highlight">answered</span>
+            </h2>
+        </div>
+
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do I need to install anything?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    No — Pyrox Biz runs entirely in your browser. Just sign up, and you can
+                    start working from any device, anywhere. A mobile app is available on
+                    Android, and an iOS version is coming soon.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I import my existing data?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes. You can import your products, customers, suppliers, and opening
+                    balances from Excel or CSV files in minutes. Our team will also help
+                    you migrate from other systems for free on Business and Enterprise plans.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is my data safe?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Absolutely. All data is encrypted in transit and at rest. We perform
+                    hourly automated backups and store them in geo-redundant data centers.
+                    Only you and the users you authorize can access your business data.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What happens after my free trial ends?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Your trial lasts 14 days. When it ends, you can pick a plan and keep
+                    going with no data loss. If you decide not to continue, your data stays
+                    safe and can be exported any time.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I cancel anytime?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes. Cancel from your dashboard with one click. You'll keep access until
+                    the end of your billing period, and we'll never charge you again.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you offer support in Urdu?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes — our WhatsApp support team responds in both English and Urdu,
+                    seven days a week, from 9 AM to 11 PM.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SUPPORT -->
+<section class="support-section">
+    <div class="container">
+        <div class="section-head anim-fade-up">
+            <div class="section-label">Support</div>
+            <h2 class="section-title">
+                We're here <span class="highlight">when you need us</span>
+            </h2>
+        </div>
+
+        <div class="support-grid">
+            <div class="support-card anim-fade-up" data-delay="0">
+                <div class="support-icon"><i class="fas fa-book-open"></i></div>
+                <h4>Documentation</h4>
+                <p>Step-by-step guides for every feature.</p>
+                <a href="#" class="support-link">Browse docs</a>
+            </div>
+
+            <div class="support-card anim-fade-up" data-delay="1">
+                <div class="support-icon"><i class="fab fa-whatsapp"></i></div>
+                <h4>WhatsApp support</h4>
+                <p>9 AM – 11 PM, 7 days a week.</p>
+                <a href="#" class="support-link">Message us</a>
+            </div>
+
+            <div class="support-card anim-fade-up" data-delay="2">
+                <div class="support-icon"><i class="fas fa-envelope"></i></div>
+                <h4>Email support</h4>
+                <p>Responses within 12 hours.</p>
+                <a href="#" class="support-link">Send email</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-box anim-scale-in">
+            <div class="cta-content">
+                <div class="cta-label">Get started today</div>
+                <h2>Ready to run your business from one place?</h2>
+                <p>Join 4,200+ businesses already saving hours every week.</p>
+                <div class="cta-actions">
+                    <a href="./auth/signup.html" class="btn-white btn-large">
+                        Start free trial
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#" class="btn-outline-white btn-large">
+                        <i class="fas fa-calendar"></i>
+                        Book a demo
+                    </a>
+                </div>
+                <div class="cta-features">
+                    <span><i class="fas fa-check"></i> 14-day trial</span>
+                    <span><i class="fas fa-check"></i> No credit card</span>
+                    <span><i class="fas fa-check"></i> Cancel anytime</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo">
+                    <span class="logo-mark">P</span>
+                    <span class="logo-text">Pyrox<span>Biz</span></span>
+                </div>
+                <p>The all-in-one business OS for traders, shopkeepers, and growing teams.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <strong>Product</strong>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#demo">Live demo</a>
+                <a href="#">Changelog</a>
+            </div>
+
+            <div class="footer-col">
+                <strong>Company</strong>
+                <a href="#">About</a>
+                <a href="#">Careers</a>
+                <a href="#">Contact</a>
+                <a href="#">Partners</a>
+            </div>
+
+            <div class="footer-col">
+                <strong>Support</strong>
+                <a href="#"><i class="fas fa-book"></i> Docs</a>
+                <a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="#"><i class="fas fa-envelope"></i> Email</a>
+                <a href="#faq">FAQ</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 <strong>Pyrox Biz</strong> — Built by Moeez Labs. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Security</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="back-top-btn" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script src="index.js"></script>
+</body>
+</html>
